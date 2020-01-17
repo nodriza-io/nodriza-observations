@@ -1,0 +1,47 @@
+{
+    "proposals": [
+        "https://sales.nodriza.io/v1/document/proposal/5deffbbe6beda000261fb472/full?source=none&rand=9649906",
+        "https://sales.nodriza.io/v1/document/proposal/5e20d058cbb4e11cafb5b7e7/full?source=none&rand=7182810",
+        "https://sales.nodriza.io/v1/document/proposal/5df4f7faf04bba0026ccaf61/full?source=none&rand=539701",
+        "https://sales.nodriza.io/v1/document/proposal/5c351b9988d3c7002948cd06/full?source=none&rand=5375090",
+        "https://sales.nodriza.io/v1/document/proposal/5bfed21ea8abfc00241649a5/full?source=none&rand=7765069"
+    ],
+    "observations": [
+	    {
+	    	"name": "Creada y no ha sido vista en 24 horas",
+	    	"type": "Baja",
+	    	"color": "yellow",
+	    	"script": "(!p.views && moment().diff(moment(p.createdAt), 'hour') > 24 && moment().diff(moment(p.createdAt), 'hour') < 48) ? 'Propuesta creada hace más de 24 horas y el cliente no la ha visto, no olvides enviarla por WhatsApp!' : null;"
+	    },
+	    {
+	    	"name": "Creada y no ha sido vista en 48 horas",
+	    	"type": "Media",
+	    	"color": "orange",
+	    	"script": "(!p.views && moment().diff(moment(p.createdAt), 'hour') > 48 && moment().diff(moment(p.createdAt), 'hour') < 72) ? 'Propuesta creada hace más de 48 horas y el cliente no la ha visto, dale una llamada!' : null;"
+	    },
+	    {
+	    	"name": "Creada y no ha sido vista en 72 horas",
+	    	"type": "Alta",
+	    	"color": "red",
+	    	"script": "(!p.views && moment().diff(moment(p.createdAt), 'hour') > 72) ? 'Propuesta creada hace más de 72 horas y el cliente no la ha visto, algo sucedio. Intenta contactar al cliente urgente!' : null;"
+	    },
+	    {
+	    	"name": "Propuesta vista durante los primeros 60 minutos",
+	    	"type": "Felicitación",
+	    	"color": "green",
+				"script": "(_.get(p, 'opened[0].firstView') && moment(_.get(p, 'opened[0].firstView')).diff(p.createdAt, 'minutes') < 60) ? `Felicitaciones ${p.createdBy.firstName}, vieron tu propuesta en menos de ${moment(_.get(p, 'opened[0].firstView')).diff(p.createdAt, 'minutes')} minutos de haber sido creada!` : null;"
+	    },
+	    {
+	    	"name": "Propuesta cerrada por mas de $4.000 USD",
+	    	"type": "Felicitación",
+	    	"color": "green",
+				"script": "(p.status === 'Approved' && p.currency.code === 'USD' && p.total > 4000) ? `Felicitaciones ${p.createdBy.firstName}, valla cierre por encima de los $4.000 USD. !Que gran cierre!` : null;"
+	    },
+	    {
+	    	"name": "Propuesta cerrada por mas de $10.000.000 COP",
+	    	"type": "Felicitación",
+	    	"color": "green",
+				"script": "(p.status === 'Approved' && p.currency.code === 'COP' && p.total > 10000000) ? `Felicitaciones ${p.createdBy.firstName}, has hecho un cierre por encima de los $10.000.000 USD. !Que gran cierre!` : null;"
+	    }
+    ]
+}

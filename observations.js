@@ -8,9 +8,9 @@ const async = require('async')
 const safeEval = require('safe-eval')
 const manifest = require('./manifest.json')
 const proposals = manifest.proposals
-const scripts = manifest.scripts
+const observations = manifest.observations
 
-console.log(`\n> Job started with ${proposals.length} proposals and ${scripts.length} scripts to validate...`.magenta)
+console.log(`\n> Job started with ${proposals.length} proposals and ${observations.length} observations to validate...`.magenta)
 
 async.timesLimit(proposals.length, 10, (i, callback) => {
   let p = proposals[i]
@@ -30,21 +30,23 @@ async.timesLimit(proposals.length, 10, (i, callback) => {
     },
     validate: (callback) => {
       const contest = {
+        _: _,
         moment: moment,
         numeral: numeral,
         p: p
       }
-      console.log('\n> Evaluating:', `
+      console.log('\n\n> Evaluating:', `
+
   ${p.proposalNumber} > ${p.title}
   Status ${p.status}
   Total $${p.total} ${p.currency.code}
   Views ${p.views || 0}
   ${p.lastSeen ? 'Seen ' + moment(p.lastSeen).fromNow() : 'Unseen'}`.cyan)
-      for (let j = 0; j < scripts.length; j++) {
-        const script = scripts[j]
-        console.log('> Script:', script.yellow)
-        let msg = safeEval(script, contest)
-        console.log(`> Msg:`, typeof msg === 'string' ? msg.red : msg)
+      for (let j = 0; j < observations.length; j++) {
+        const obs = observations[j]
+        console.log('\n> Script:', obs.script)
+        let msg = safeEval(obs.script, contest)
+        console.log(`> Msg:`, typeof msg === 'string' ? msg[obs.color] : msg)
       }
       callback()
     }   
