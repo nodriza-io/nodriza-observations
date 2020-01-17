@@ -1,0 +1,28 @@
+{
+  "name": "nodriza-observations",
+  "version": "1.0.0",
+  "description": "Test proposals observations framework",
+  "main": "observations.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodriza-io/nodriza-observations.git"
+  },
+  "author": "Juan Carlos Prieto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nodriza-io/nodriza-observations/issues"
+  },
+  "homepage": "https://github.com/nodriza-io/nodriza-observations#readme",
+  "dependencies": {
+    "async": "^3.1.0",
+    "colors": "^1.4.0",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "numeral": "^2.0.6",
+    "request": "^2.88.0",
+    "safe-eval": "^0.4.1"
+  }
+}
