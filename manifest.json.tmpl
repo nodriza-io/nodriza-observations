@@ -4,7 +4,8 @@
         "https://sales.nodriza.io/v1/document/proposal/5e20d058cbb4e11cafb5b7e7/full?source=none&rand=7182810",
         "https://sales.nodriza.io/v1/document/proposal/5df4f7faf04bba0026ccaf61/full?source=none&rand=539701",
         "https://sales.nodriza.io/v1/document/proposal/5c351b9988d3c7002948cd06/full?source=none&rand=5375090",
-        "https://sales.nodriza.io/v1/document/proposal/5bfed21ea8abfc00241649a5/full?source=none&rand=7765069"
+        "https://sales.nodriza.io/v1/document/proposal/5bfed21ea8abfc00241649a5/full?source=none&rand=7765069",
+        "https://sales.nodriza.io/v1/document/proposal/5e2249d70da2bb0026bae02c/full?source=none&rand=9162834"
     ],
     "observations": [
 	    {
@@ -32,16 +33,22 @@
 				"script": "(_.get(p, 'opened[0].firstView') && moment(_.get(p, 'opened[0].firstView')).diff(p.createdAt, 'minutes') < 60) ? `Felicitaciones ${p.createdBy.firstName}, vieron tu propuesta en menos de ${moment(_.get(p, 'opened[0].firstView')).diff(p.createdAt, 'minutes')} minutos de haber sido creada!` : null;"
 	    },
 	    {
-	    	"name": "Propuesta cerrada por mas de $4.000 USD",
+	    	"name": "Propuesta cerrada por más de $4.000 USD",
 	    	"type": "Felicitación",
 	    	"color": "green",
 				"script": "(p.status === 'Approved' && p.currency.code === 'USD' && p.total > 4000) ? `Felicitaciones ${p.createdBy.firstName}, valla cierre por encima de los $4.000 USD. !Que gran cierre!` : null;"
 	    },
 	    {
-	    	"name": "Propuesta cerrada por mas de $10.000.000 COP",
+	    	"name": "Propuesta cerrada por más de $10.000.000 COP",
 	    	"type": "Felicitación",
 	    	"color": "green",
 				"script": "(p.status === 'Approved' && p.currency.code === 'COP' && p.total > 10000000) ? `Felicitaciones ${p.createdBy.firstName}, has hecho un cierre por encima de los $10.000.000 USD. !Que gran cierre!` : null;"
+	    },
+	    {
+	    	"name": "Propuesta cerrada en menos de 60 días",
+	    	"type": "Felicitación",
+	    	"color": "green",
+	    	"script": "(p.status === 'Approved' && p.statusUpdatedAt && moment(p.statusUpdatedAt).diff(moment(p.createdAt), 'days') < 60) ? `Felicitaciones ${p.createdBy.firstName}, has hecho un cierre en menos de 60 días. !Que barbaro!` : null;"
 	    }
     ]
 }

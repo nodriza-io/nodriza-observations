@@ -39,6 +39,7 @@ async.timesLimit(proposals.length, 10, (i, callback) => {
 
   ${p.proposalNumber} > ${p.title}
   Status ${p.status}
+  Status updated after ${p.statusUpdatedAt ? moment(p.statusUpdatedAt).diff(moment(p.createdAt), 'days') : 'unknown'}
   Total $${p.total} ${p.currency.code}
   Views ${p.views || 0}
   ${p.lastSeen ? 'Seen ' + moment(p.lastSeen).fromNow() : 'Unseen'}`.cyan)
