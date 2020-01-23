@@ -4,7 +4,7 @@
   "description": "Test proposals observations framework",
   "main": "observations.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon observations.js"
   },
   "repository": {
     "type": "git",

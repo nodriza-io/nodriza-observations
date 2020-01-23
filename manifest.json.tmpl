@@ -1,18 +1,19 @@
 {
     "proposals": [
-        "https://sales.nodriza.io/v1/document/proposal/5deffbbe6beda000261fb472/full?source=none&rand=9649906",
-        "https://sales.nodriza.io/v1/document/proposal/5e20d058cbb4e11cafb5b7e7/full?source=none&rand=7182810",
-        "https://sales.nodriza.io/v1/document/proposal/5df4f7faf04bba0026ccaf61/full?source=none&rand=539701",
-        "https://sales.nodriza.io/v1/document/proposal/5c351b9988d3c7002948cd06/full?source=none&rand=5375090",
-        "https://sales.nodriza.io/v1/document/proposal/5bfed21ea8abfc00241649a5/full?source=none&rand=7765069",
-        "https://sales.nodriza.io/v1/document/proposal/5e2249d70da2bb0026bae02c/full?source=none&rand=9162834"
+        "https://sales.nodriza.io/v1/document/proposal/5d27cd889f1ceb0023ee4cac/full?source=none&rand=7554679"
     ],
     "observations": [
 	    {
-	    	"name": "Creada y no ha sido vista en 24 horas",
-	    	"type": "Baja",
-	    	"color": "yellow",
-	    	"script": "(!p.views && moment().diff(moment(p.createdAt), 'hour') > 24 && moment().diff(moment(p.createdAt), 'hour') < 48) ? 'Propuesta creada hace más de 24 horas y el cliente no la ha visto, no olvides enviarla por WhatsApp!' : null;"
+	    	"name": "Propuesta creada hace más de 3 meses con status Ready y sin comentario.",
+	    	"type": "Alta",
+	    	"color": "red",
+	    	"script": "(p.status === 'Ready' && moment().diff(moment(p.createdAt), 'month') > 3 && _.isEmpty(p.specialObservations)) ? `Propuesta creada hace ${moment().diff(moment(p.createdAt), 'month')} meses con status 'Ready' y sin comentario alguno.'` : null;"
+	    },
+	    {
+	    	"name": "Creada y no ha sido vista en 72 horas",
+	    	"type": "Alta",
+	    	"color": "red",
+	    	"script": "(!p.views && moment().diff(moment(p.createdAt), 'hour') > 72) ? 'Propuesta creada hace más de 72 horas y el cliente no la ha visto, algo sucedio. Intenta contactar al cliente urgente!' : null;"
 	    },
 	    {
 	    	"name": "Creada y no ha sido vista en 48 horas",
@@ -21,10 +22,10 @@
 	    	"script": "(!p.views && moment().diff(moment(p.createdAt), 'hour') > 48 && moment().diff(moment(p.createdAt), 'hour') < 72) ? 'Propuesta creada hace más de 48 horas y el cliente no la ha visto, dale una llamada!' : null;"
 	    },
 	    {
-	    	"name": "Creada y no ha sido vista en 72 horas",
-	    	"type": "Alta",
-	    	"color": "red",
-	    	"script": "(!p.views && moment().diff(moment(p.createdAt), 'hour') > 72) ? 'Propuesta creada hace más de 72 horas y el cliente no la ha visto, algo sucedio. Intenta contactar al cliente urgente!' : null;"
+	    	"name": "Creada y no ha sido vista en 24 horas",
+	    	"type": "Baja",
+	    	"color": "yellow",
+	    	"script": "(!p.views && moment().diff(moment(p.createdAt), 'hour') > 24 && moment().diff(moment(p.createdAt), 'hour') < 48) ? 'Propuesta creada hace más de 24 horas y el cliente no la ha visto, no olvides enviarla por WhatsApp!' : null;"
 	    },
 	    {
 	    	"name": "Propuesta vista durante los primeros 60 minutos",
