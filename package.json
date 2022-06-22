@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/nodriza-io/nodriza-observations#readme",
   "dependencies": {
-    "async": "^3.1.0",
+    "async": "^3.2.2",
     "colors": "^1.4.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
